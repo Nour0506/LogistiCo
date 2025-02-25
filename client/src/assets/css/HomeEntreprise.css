@@ -1,0 +1,190 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Taviraj:300,400,700,300i,400i,700i');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import '../Fonts/font-awesome.min.css';
+
+/* Variables CSS */
+:root {
+  --primary-color: #5aa6ed;
+  --secondary-color: #f2f2f2;
+  --text-color: #444;
+  --light-text-color: #bbb;
+  --background-color: #fff;
+  --border-color: rgba(144, 144, 144, 0.25);
+  --font-family: 'Taviraj', serif;
+}
+
+/* Reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Box Model */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* Containers */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80rem;
+}
+
+@media screen and (max-width: 1680px) {
+  .container {
+    width: 65rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .container {
+    width: 65rem;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .container {
+    width: 90% !important;
+  }
+}
