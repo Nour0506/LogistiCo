@@ -33,6 +33,7 @@ export default {
   position: relative;
   text-align: center;
   overflow: hidden;
+  background-color: white;
 }
 
 /* Background Video */
@@ -45,6 +46,7 @@ export default {
   object-fit: cover;
   transform: translate(-50%, -50%);
   z-index: 0; /* Ensure video stays behind the content */
+ 
 }
 
 /* Inner Content */

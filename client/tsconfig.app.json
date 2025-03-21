@@ -8,7 +8,18 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Options supplémentaires pour SweetAlert2 et autres bibliothèques */
+    "module": "ESNext", // Utilise le système de modules ES
+    "moduleResolution": "Node", // Résolution des modules comme Node.js
+    "target": "ES6", // Cible ES6 pour une meilleure compatibilité
+    "lib": ["DOM", "ES6"], // Ajoute les librairies DOM et ES6
+    "esModuleInterop": true, // Permet l'importation de modules CommonJS
+    "skipLibCheck": true, // Ignore la vérification des types des bibliothèques tierces
+    "resolveJsonModule": true, // Permet d'importer des fichiers JSON
+    "isolatedModules": true, // Assure la compatibilité avec les modules isolés
+    "noEmit": true // Ne génère pas de fichiers JS (utilisé avec Vite/Vue)
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

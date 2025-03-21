@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeEntreprise from '../views/HomeEntreprise.vue'
 import FormPage from '../components/AccountEntreprise/formulaire.vue'
-
+import Login from '../components/ForgetPassword/ForgetPassword.vue';
 
 // Define your routes
 const routes = [
@@ -14,6 +14,11 @@ const routes = [
     path: '/create-account',
     name: 'CreateAccount', // Add a name for the route (optional but recommended)
     component: FormPage,
+  },
+  {
+    path: '/login', // Nouvelle route pour la page de connexion
+    name: 'Login', // Nom de la route
+    component: Login, // Composant associé
   },
 ]
 
