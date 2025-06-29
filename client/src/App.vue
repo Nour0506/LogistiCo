@@ -1,12 +1,12 @@
 <template>
   <div>
     <router-view />
-    <!-- Affiche la vue actuelle en fonction de la route -->
   </div>
 </template>
 <script lang="ts">
+import '@fortawesome/fontawesome-free/css/all.css';
 export default {
-  name: 'App',
+  name: 'LogistiCO',
 }
 </script>
 

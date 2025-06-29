@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Sidebar from '../components/Sidebar.vue';
-import NavBar from '../components/NavBar.vue';
+import Sidebar from '../components/CompanyDashboard/SideBar.vue';
+import NavBar from '../components/CompanyDashboard/NavBar.vue';
 
 export default {
   name: 'DefaultDashboard',

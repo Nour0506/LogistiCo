@@ -4,7 +4,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import Joi from 'joi';
 import dotenv from 'dotenv';
-
+import Limiter from '../../middleware/ratelimit.js'; 
 dotenv.config(); // Charger les variables d'environnement
 const router = express.Router();
 
@@ -17,7 +17,7 @@ const validateLogin = (data) => {
     return schema.validate(data);
 };
 
-router.post('/login', async (req, res) => {
+router.post('/login',Limiter, async (req, res) => {
     try {
         console.log('Requête de connexion:', req.body);
 
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
                 return res.status(403).json({ error: 'Votre compte entreprise n\'est pas encore approuvé.' });
             }
         } 
-
+        
         // Vérification des clés JWT
         if (!process.env.JWT_SECRET || !process.env.JWT_REFRESH_SECRET) {
             throw new Error('Les clés JWT ne sont pas configurées dans les variables d\'environnement.');
@@ -63,13 +63,13 @@ router.post('/login', async (req, res) => {
 
         // Génération des tokens
         const accessToken = jwt.sign(
-            { userId: user._id, role: user.role },
+            { userId: user._id, role: user.role ,company_id: Company._id},
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
 
         const refreshToken = jwt.sign(
-            { userId: user._id, role: user.role },
+            { userId: user._id, role: user.role,company_id: Company._id },
             process.env.JWT_REFRESH_SECRET,
             { expiresIn: '7d' }
         );
@@ -78,7 +78,7 @@ router.post('/login', async (req, res) => {
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 3600000, // 1 heure
+            maxAge: 36000000000, // 1 heure
             sameSite: 'Strict',
         });
 

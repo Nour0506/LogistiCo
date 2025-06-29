@@ -10,7 +10,6 @@
     <div class="inner">
       <h1>Welcome to LogistiCO!</h1>
       <p>Simplifying storage, streamlining operations, and optimizing your business.</p>
-      <a href="#one" class="button special scrolly">Get Started</a>
     </div>
   </section>
 </template>
@@ -155,93 +154,4 @@ body.is-loading #banner:before {
   opacity: 1;
 }
 
-/* Button */
-button,
-.button,
-input[type='submit'],
-input[type='reset'],
-input[type='button'] {
-  appearance: none;
-  transition:
-    background-color 0.2s,
-    color 0.2s;
-  border: 0;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 400;
-  height: 2.85rem;
-  line-height: 2.95rem;
-  padding: 0 1.5rem;
-  text-align: center;
-  text-transform: uppercase;
-  background-color: var(--secondary-color);
-  color: #000 !important;
-}
-
-button:hover,
-.button:hover,
-input[type='submit']:hover,
-input[type='reset']:hover,
-input[type='button']:hover {
-  background-color: white;
-}
-
-button:active,
-.button:active,
-input[type='submit']:active,
-input[type='reset']:active,
-input[type='button']:active {
-  background-color: #e5e5e5;
-}
-
-button:disabled,
-.button:disabled,
-input[type='submit']:disabled,
-input[type='reset']:disabled,
-input[type='button']:disabled {
-  pointer-events: none;
-  opacity: 0.25;
-}
-
-.button.fit {
-  width: 100%;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.button.small {
-  font-size: 0.8rem;
-}
-
-.button.big {
-  font-size: 1.35rem;
-}
-
-.button.alt {
-  background: transparent;
-  box-shadow: inset 0 0 0 2px var(--border-color);
-  color: var(--text-color) !important;
-}
-
-.button.alt:hover {
-  background: rgba(144, 144, 144, 0.075);
-}
-
-.button.alt:active {
-  background: rgba(144, 144, 144, 0.2);
-}
-
-.button.special {
-  background-color: var(--primary-color);
-  color: #fff !important;
-}
-
-.button.special:hover {
-  background-color: #daa24f;
-}
-
-.button.special:active {
-  background-color: #d3542d;
-}
 </style>

@@ -1,13 +1,36 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plateforme LogistiCo - Optimisation logistique">
+    <title>LogistiCo - Plateforme d'optimisation logistique</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./src/assets/Images/Logo.png" type="image/png">
+    
+    <!-- Logo dans le head (optionnel) -->
+    <style>
+      .logo-img {
+        display: none; /* Caché par défaut */
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <!-- Logo visible dans le body si nécessaire -->
+    <header>
+      <img src="../../assets/Images/Logo.png" alt="Logo LogistiCo" class="logo-img" style="max-width: 150px; height: auto;">
+    </header>
+
+    <main>
+      <div id="app"></div>
+    </main>
+
     <script type="module" src="/src/main.ts"></script>
+    
+    <!-- Fallback pour les navigateurs ne supportant pas JavaScript -->
+    <noscript>
+      <p>Veuillez activer JavaScript pour utiliser cette application.</p>
+    </noscript>
   </body>
 </html>

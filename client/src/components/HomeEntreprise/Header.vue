@@ -1,256 +1,313 @@
 <template>
   <div class="header">
-    <header id="header1" class="header d-flex align-items-center light-background sticky-top">
-      <div class="container">
-        <div class="header-content d-flex align-items-center justify-content-between">
-          <!-- Logo -->
-          <router-link to="/" class="logo">
-            <img src="../../assets/Images/Logo.png" alt="Logo" class="logo-img" />
-          </router-link>
+    <header class="header-container">
+      <div class="nav-wrapper">
+        <!-- Logo -->
+        <router-link to="/" class="logo">
+          <img src="../../assets/Images/Logo.png" alt="Logo" class="logo-img" />
+        </router-link>
 
-          <!-- Menu de navigation -->
-          <nav id="navmenu" class="navmenu">
-            <ul class="d-flex align-items-center w-100">
-              <li><router-link to="/">Home</router-link></li>
-              <li><router-link to="/about ">About</router-link></li>
-              <li><router-link to="/services">Services</router-link></li>
-              <li><router-link to="/contact">Contact</router-link></li>
-            </ul>
-          </nav>
-          <button type="button" id="but">Log In</button>
-          <button type="button" id="butt">Sign Up</button>
+        <!-- Navigation Menu -->
+        <nav class="nav-menu" :class="{ 'nav-active': isMenuOpen }">
+          <ul>
+            <li><router-link to="/" @click="closeMenu">Home</router-link></li>
+            <li><router-link to="/about" @click="closeMenu">About</router-link></li>
+            <li><router-link to="/services" @click="closeMenu">Services</router-link></li>
+            <li><router-link to="/contact" @click="closeMenu">Contact</router-link></li>
+          </ul>
+        </nav>
 
-          <!-- Bouton de menu mobile -->
-          <div class="mobile-nav-toggle d-xl-none" >
-            <i class="bi bi-list"></i>
-          </div>
+        <!-- Auth Buttons -->
+        <div class="auth-buttons">
+          <button class="btn btn-login" @click="goToLogin">Log In</button>
+          <button class="btn btn-signup" @click="goToSignup">Sign Up</button>
+        </div>
 
-          <!-- Liens sociaux -->
-          <div class="header-social-links d-flex align-items-center">
-            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" @click="toggleMenu" aria-label="Toggle navigation menu">
+          <span :class="{ 'active': isMenuOpen }"></span>
+          <span :class="{ 'active': isMenuOpen }"></span>
+          <span :class="{ 'active': isMenuOpen }"></span>
+        </button>
+
+        <!-- Social Links -->
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
         </div>
       </div>
     </header>
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'HeaderPage',
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const isMenuOpen = ref(false)
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
+const closeMenu = () => {
+  isMenuOpen.value = false
+}
+
+const goToLogin = () => {
+  closeMenu()
+  router.push('/login')
+}
+
+const goToSignup = () => {
+  closeMenu()
+  router.push('/create-account')
 }
 </script>
-<style>
-/* Styles de base */
+
+<style scoped>
 .header {
-  position: fixed; /* Change de fixed à relative pour éviter qu'elle reste affichée sur toutes les pages */
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.303);
-  z-index: 997;
-  padding: 5px 0;
-  transition: background-color 0.3s ease;
-  height: 70px;
-  display: flex;
-  align-items: center;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  height: 60px;
 }
 
-.container {
-  max-width: 1200px;
+.header-container {
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
-  width: 100%; /* S'assurer que le conteneur prend toute la largeur disponible */
+  padding: 0 2rem;
+  height: 100%;
 }
 
-.header-content {
+.nav-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%; /* Permet aux éléments de s'ajuster à la largeur */
+  height:100%;
+  gap: 2rem;
 }
 
 .logo-img {
-  height: 90px;
-  position: absolute;
+  height: 60px;
   width: auto;
-  max-height: 80px;
-  left: 25px;
-  top: 2px; /* Limiter la hauteur au maximum */
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-.navmenu ul {
+.logo-img:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-menu ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  list-style: none;
-  width: 100%; /* Permet au menu de s'étendre sur toute la largeur */
-  justify-content: flex-end; /* Aligner les éléments du menu à droite sur large écran */
+  align-items: center;
 }
 
-.navmenu li {
-  margin: 0 30px;
-}
-
-.navmenu a {
-  color: #ffffff;
-  font-size: 16px;
+.nav-menu a {
+  color: #000000;
+  font: bold 500 1rem 'Poppins', sans-serif;
   text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  position: relative;
+  letter-spacing: 0.3px;
 }
 
-.navmenu a:hover,
-.navmenu a:focus,
-.navmenu .active {
-  color: #ba752c;
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ed8946, #ff9a6c);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
 }
 
-/* Liens sociaux */
-.header-social-links a {
-  color: #ffffff;
-  margin-left: 15px;
-  font-size: 16px;
-  transition: color 0.3s ease;
+.nav-menu a:hover {
+  color: #ed8946;
+  transform: translateY(-1px);
 }
 
-.header-social-links a:hover {
-  color: #007bff;
+.nav-menu a:hover::after {
+  width: 70%;
 }
 
-/* Bouton de menu mobile */
-.mobile-nav-toggle {
-  display: none;
-  font-size: 24px;
-  color: #ffffff;
+.auth-buttons {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  position: relative;
+  left: 120px;
+}
+
+.btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  border: none;
+  letter-spacing: 0.3px;
+  height: 36px;
+  display: flex;
+  align-items: center;
 }
 
-/* Styles pour les écrans de petite taille */
+.btn-login {
+  background: rgba(237, 137, 70, 0.1);
+  color: #ed8946;
+  border: 1.5px solid transparent;
+}
+
+.btn-login:hover {
+  border-color: #ed8946;
+  transform: translateY(-1px);
+}
+
+.btn-signup {
+  background: linear-gradient(45deg, #ed8946, #ff9a6c);
+  color: white;
+}
+
+.btn-signup:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(237, 137, 70, 0.3);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-link {
+  color: #2d3436;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  padding: 0.3rem;
+}
+
+.social-link:hover {
+  color: #ed8946;
+  transform: translateY(-1px);
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #2d3436;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .social-links {
+    display: none;
+  }
+  
+  .nav-wrapper {
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
-    height: 60px; /* Réduire la hauteur sur mobile */
-    padding: 5px 0;
+    height: 56px;
   }
 
-  .logo-img {
-    height: 50px; /* Réduire la taille du logo */
-  }
-
-  .navmenu ul {
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    position: absolute;
-    top: 60px;
+  .nav-menu {
+    position: fixed;
+    top: 56px;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px 20px;
-    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    visibility: hidden;
+    backdrop-filter: blur(8px);
   }
 
-  .navmenu.active ul {
+  .nav-menu.nav-active {
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .mobile-toggle {
     display: flex;
   }
 
-  .navmenu li {
-    margin: 10px 0;
+  .auth-buttons {
+    display: none;
   }
 
-  .header-social-links {
-    display: none; /* Masquer les icônes sociales sur mobile */
+  .nav-active ~ .mobile-toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+    background-color: #ed8946;
   }
 
-  .mobile-nav-toggle {
-    display: block; /* Afficher le bouton de menu mobile */
+  .nav-active ~ .mobile-toggle span:nth-child(2) {
+    opacity: 0;
   }
 
-  /* Rendre le bouton visible sur mobile */
-  .navmenu .button {
-    display: block;
-    margin-top: 15px;
-    width: 100%;
+  .nav-active ~ .mobile-toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+    background-color: #ed8946;
   }
 }
 
 @media (max-width: 480px) {
-  .header {
-    height: 50px; /* Ajuster la hauteur sur très petits écrans */
+  .header-container {
+    padding: 0 1rem;
   }
 
   .logo-img {
-    height: 40px; /* Réduire encore la taille du logo */
+    height: 32px;
   }
 
-  .navmenu ul {
-    top: 50px;
+  .nav-menu a {
+    font-size: 0.9rem;
   }
-
-  .navmenu a {
-    font-size: 12px;
-  }
-}
-
-.button.primary {
-  background: linear-gradient(45deg, #ff5722, #ff9800);
-  color: white;
-  border: none;
-  padding: 14px;
-  font-size: 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-  width: 100%;
-  font-weight: bold;
-  line-height: 0.5rem;
-}
-
-/* Effet au survol */
-.button.primary:hover {
-  background: linear-gradient(45deg, #ff9800, #ff5722);
-  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
-}
-#but {
-  background: linear-gradient(45deg, #fcbfadd0, #ed8946bd);
-  color: white;
-  border: none;
-  padding: 14px;
-  font-size: 15px;
-  border-radius: 80px;
-  cursor: pointer;
-  transition: 0.3s;
-  width: 6rem;
-  /* Centre verticalement */
-  margin-left: 50px;
-  position: absolute;
-  right: 4rem;
-}
-
-/* Effet au survol */
-#but:hover {
-  background: linear-gradient(45deg, #ed8946bd, #fcbfadd0);
-  box-shadow: 0 4px 15px rgba(104, 30, 7, 0.4);
-}
-#butt {
-  background: linear-gradient(45deg, #fcbfadd0, #ed8946bd);
-  color: white;
-  border: none;
-  padding: 14px;
-  font-size: 15px;
-  border-radius: 80px;
-  cursor: pointer;
-  transition: 0.3s;
-  width: 6rem;
-  /* Centre verticalement */
-  margin-left: 50px;
-  position: absolute;
-  right: 11rem;
-}
-
-/* Effet au survol */
-#butt:hover {
-  background: linear-gradient(45deg, #ed8946bd, #fcbfadd0);
-  box-shadow: 0 4px 15px rgba(104, 30, 7, 0.4);
 }
 </style>
